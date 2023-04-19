@@ -4,6 +4,8 @@ public class Main {
 		
 				System.out.println(teste.getNome());
 				// oi dnv
+		Sinistro teste2 = new Sinistro("12022001", "unicamp");
+		 System.out.println(teste2.getId());
 			
 	}
 }
