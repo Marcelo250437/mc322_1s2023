@@ -1,7 +1,7 @@
-import java.io.FileInputStream; 
+// import java.io.FileInputStream; 
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.LinkedList;
+// import java.util.Enumeration;
+// import java.util.LinkedList;
 import java.util.List;
 import java.util.InputMismatchException;
 
@@ -11,15 +11,17 @@ public class ClientePF extends Cliente {
 
      public ClientePF ( String nome , String endereco , Date dataLicenca ,
      String educacao , String genero , String classeEconomica ,
-     List < Veiculo > listaVeiculos , String cpf , Date dataNascimento ) {
-     // chama o construtor da superclasse
-     super ( nome , endereco , dataLicenca , educacao , genero , classeEconomica , listaVeiculos );
+     List < Veiculo > listaVeiculos , String CPF , Date dataNascimento ) {
+     
+	// chama o construtor da superclasse
+     super ( nome , endereco , listaVeiculos );
      this . CPF = CPF ;
      this . dataNascimento = dataNascimento ;
      }
     
      // TO DO:
      // metodos getters e setters para cpf e dataNascimento
+	 
      // ...
 
      public String getCpf() {
@@ -42,7 +44,7 @@ public class ClientePF extends Cliente {
      public String toString() {
 		return this.CPF;
 		}
-     }
+     
      public static boolean validarCPF(String CPF) {
 		// considera-se erro CPF's formados por uma sequencia de numeros iguais
 		if (CPF.equals("00000000000") ||
