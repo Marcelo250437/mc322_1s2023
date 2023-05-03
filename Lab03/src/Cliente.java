@@ -1,9 +1,9 @@
-// import java.io.FileInputStream; 
+import java.io.FileInputStream; 
 import java.util.Date;
-// import java.util.Enumeration;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
-//import java.util.InputMismatchException;
+import java.util.InputMismatchException;
 
 public class Cliente {
 	private String nome ;
