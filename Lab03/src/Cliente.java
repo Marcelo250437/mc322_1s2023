@@ -14,7 +14,11 @@ public class Cliente {
 	public Cliente(String nome , String endereco , List < Veiculo > listaVeiculos) {
 		this.nome = nome;
 		this.endereco = endereco;
-		this.listaVeiculos = listaVeiculos
+		this.listaVeiculos = listaVeiculos;
+	}
+	public Cliente(String nome){
+		this.nome = nome;
+
 	}
 	// Getters e setters
 	public String getNome() {
