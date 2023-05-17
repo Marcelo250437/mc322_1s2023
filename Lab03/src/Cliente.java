@@ -37,7 +37,7 @@ public class Cliente {
 		return listaVeiculos;
 	}
 
-	public List setlistaVeiculos(){
+	public void setlistaVeiculos(){
 		this.listaVeiculos = listaVeiculos;
 	}
 

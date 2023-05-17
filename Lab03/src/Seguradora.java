@@ -1,8 +1,18 @@
+// import java.io.FileInputStream; 
+import java.util.Date;
+// import java.util.Enumeration;
+// import java.util.LinkedList;
+import java.util.List;
+import java.util.InputMismatchException;
+
+
 public class Seguradora {
 	private String nome ;
 	private String telefone ;
 	private String email ;
 	private String endereco ;
+	private List listaSinistros;
+	private List listaClientes;
 	
 	// Construtor
 	public Seguradora(String nome, String telefone, String email, String endereco) {
@@ -10,6 +20,8 @@ public class Seguradora {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
+		this.listaSinistros = listaSinistros;
+		this.listaClientes = listaClientes;
 		
 	}
 	// Getters e setters
@@ -43,4 +55,23 @@ public class Seguradora {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}}
+	}
+
+	public List getListaSinistros(){
+		return listaSinistros;
+	}
+
+	public void setListaSinistros(){
+		this.listaSinistros = listaSinistros;
+	}
+
+	public List getListaClientes(){
+		return listaClientes;
+	}
+
+	public void setListaClientes(){
+		this.listaClientes = listaClientes;
+	}
+
+
+}
