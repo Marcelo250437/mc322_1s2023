@@ -11,11 +11,10 @@ public class Cliente {
 	private List listaVeiculos;
 	
 	// Construtor
-	public Cliente(String nome , String endereco , List < Veiculo > listaVeiculos) {
+	public Cliente(String nome , String endereco) {
 		this.nome = nome;
 		this.endereco = endereco;
-		this.listaVeiculos = listaVeiculos;
-	}
+	}	
 	public Cliente(String nome){
 		this.nome = nome;
 
@@ -45,8 +44,9 @@ public class Cliente {
 		this.listaVeiculos = listaVeiculos;
 	}
 
+	@Override
 	public String toString() {
-		return this.nome;
+		return String.format("o cliente é o %s e mora no endereço %s", this.nome, this.endereco);
 		}
 
 	

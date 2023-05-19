@@ -1,30 +1,35 @@
 import java.util.Random;
 
 public class Sinistro {
-	// private int id ;
+	private int id ;
 	private String data;
 	private String endereco;
+	private Seguradora seguradora;
+	private Veiculo veiculo;
+	private Cliente cliente;
 
 	
 	// Construtor
-	public Sinistro(String data, String endereco) {
-		// this.id = id;
+	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
 		this.data = data;
 		this.endereco = endereco;
+		this.seguradora = seguradora;
+		this.veiculo = veiculo;
+		this.cliente = cliente;
+		this.setId();
 	}
 	
 	
 	// Getters e setters
-	public int getId() {
+	public void setId() {
 		Random aleatorio = new Random();
-		int id = aleatorio.nextInt((99999 - 10000) + 1) + 10000;
+		int idn = aleatorio.nextInt((99999 - 10000) + 1) + 10000;
 		// System.out.println("Número gerado: " + id);
-		return id;
+		this.id = idn;
 	}
-
-	// public void setId(int id) {
-		// this.id = id;
-	// }
+	public int getId(){
+		return this.id;
+	}
 
 	public String getData() {
 		return data;

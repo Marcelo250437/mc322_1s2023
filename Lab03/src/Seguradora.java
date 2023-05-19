@@ -12,7 +12,7 @@ public class Seguradora {
 	private String telefone ;
 	private String email ;
 	private String endereco ;
-	private List listaSinistros;
+	private List<Sinistro>listaSinistros=new ArrayList<>();
 	private List<Cliente>listaClientes=new ArrayList<>();
 	
 	// Construtor
@@ -32,6 +32,24 @@ public class Seguradora {
 	public boolean removerCliente(String cliente){
 		listaClientes.remove(new Cliente(cliente));
 		return true;
+	}
+	public boolean listarClientes(String cliente){
+		return true;
+	}
+	public boolean gerarSinistro(Sinistro sinistro){
+		listaSinistros.add(sinistro);
+		return true;
+	}
+	public boolean visualizarSinistro(String cliente){
+		System.out.println(sinistro);
+		return true;
+	}
+	public void listarSintros(){
+		for (Sinistro sinistro : listaSinistros){
+
+		}
+
+		
 	}
 	public String getNome() {
 		return nome;
@@ -64,22 +82,5 @@ public class Seguradora {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
-	public List getListaSinistros(){
-		return listaSinistros;
-	}
-
-	public void setListaSinistros(){
-		this.listaSinistros = listaSinistros;
-	}
-
-	public List getListaClientes(){
-		return listaClientes;
-	}
-
-	public void setListaClientes(){
-		this.listaClientes = listaClientes;
-	}
-
 
 }
