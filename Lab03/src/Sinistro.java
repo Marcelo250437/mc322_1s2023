@@ -46,5 +46,27 @@ public class Sinistro {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	public Seguradora getSeguradora() {
+        return seguradora;
+    }
+
+    public void setSeguradora(Seguradora seguradora) {
+        this.seguradora = seguradora;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+	public Cliente getCliente() {
+        return cliente;
+    }
+	public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 	
 }

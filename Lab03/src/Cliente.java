@@ -4,11 +4,12 @@ import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 
 public class Cliente {
 	private String nome ;
 	private String endereco;
-	private List listaVeiculos;
+	private List<Veiculo>listaVeiculos=new ArrayList<>();
 	
 	// Construtor
 	public Cliente(String nome , String endereco) {
@@ -36,13 +37,13 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public List getlistaVeiculos() {
-		return listaVeiculos;
-	}
+	//public ArrayList<Veiculo> getListaVeiculos() {
+       // return listaVeiculos;
+    //}
 
-	public void setlistaVeiculos(){
-		this.listaVeiculos = listaVeiculos;
-	}
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
+    }
 
 	@Override
 	public String toString() {

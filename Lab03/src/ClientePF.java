@@ -1,22 +1,28 @@
-// import java.io.FileInputStream; 
 import java.util.Date;
-// import java.util.Enumeration;
-// import java.util.LinkedList;
 import java.util.List;
 import java.util.InputMismatchException;
 
 public class ClientePF extends Cliente {
     private String CPF ;
     private Date dataNascimento ;
+	private String educacao;
+    private String genero;
+    private Date dataLicenca;
+    private String classeEconomica;
+
 
      public ClientePF ( String nome , String endereco , Date dataLicenca ,
      String educacao , String genero , String classeEconomica ,
      List < Veiculo > listaVeiculos , String CPF , Date dataNascimento ) {
      
 	// chama o construtor da superclasse
-     super ( nome , endereco , listaVeiculos );
+     super ( nome , endereco);
      this . CPF = CPF ;
      this . dataNascimento = dataNascimento ;
+	 this.educacao = educacao;
+     this.genero = genero;
+	 this.dataLicenca = dataLicenca;
+	 this.classeEconomica = classeEconomica;
      }
     
      // TO DO:
@@ -28,10 +34,6 @@ public class ClientePF extends Cliente {
 		return CPF;
 	}
 
-	public void setCpf(String CPF) {
-		this.CPF= CPF;
-	}
-
      public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -39,6 +41,38 @@ public class ClientePF extends Cliente {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	public String getEducacao() {
+        return educacao;
+    }
+
+    public void setEducacao(String educacao) {
+        this.educacao = educacao;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public Date getDataLicenca() {
+        return dataLicenca;
+    }
+
+    public void setDataLicenca(Date dataLicenca) {
+        this.dataLicenca = dataLicenca;
+    }
+
+    public String getClasseEconomica() {
+        return classeEconomica;
+    }
+
+    public void setClasseEconomica(String classeEconomica) {
+        this.classeEconomica = classeEconomica;
+    }
+
     
      @Override
      public String toString() {

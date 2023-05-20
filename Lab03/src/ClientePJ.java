@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.InputMismatchException;
 
 public class ClientePJ extends Cliente {
-    private String CNPJ ;
+    private final String CNPJ ;
     private Date dataFundacao ;
+    
+    // construtor
     public ClientePJ ( String nome , String endereco ,List < Veiculo > listaVeiculos, String CNPJ, Date dataFundacao) {
      
         // chama o construtor da superclasse
-     super ( nome , endereco, listaVeiculos );
+     super ( nome , endereco );
      this . CNPJ = CNPJ ;
      this . dataFundacao = dataFundacao ;
      }
@@ -24,10 +26,6 @@ public class ClientePJ extends Cliente {
 		return CNPJ;
 	}
 
-	public void setCnpj(String CNPJ) {
-		this.CNPJ= CNPJ;
-	}
-
      public Date getDataFundacao() {
 		return dataFundacao;
 	}
@@ -35,12 +33,13 @@ public class ClientePJ extends Cliente {
 	public void setDataFundacao(Date dataFundacao) {
 		this.dataFundacao = dataFundacao;
 	}
+    // revisar toString
     @Override
      public String toString() {
 		return this.CNPJ;
 		}
      
-        public static boolean isCNPJ(String CNPJ) {
+        public static boolean validarCNPJ(String CNPJ) {
             // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
                 if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
                     CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") ||

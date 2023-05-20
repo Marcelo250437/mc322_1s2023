@@ -33,24 +33,62 @@ public class Seguradora {
 		listaClientes.remove(new Cliente(cliente));
 		return true;
 	}
-	public boolean listarClientes(String cliente){
-		return true;
-	}
+	public ArrayList<Cliente> listarClientes(String tipoCliente){
+		ArrayList<Cliente> listaRetorna = new ArrayList<Cliente>();
+		if (tipoCliente.equals("PF")) {
+            for (Cliente i : listaClientes) {
+                if (i instanceof ClientePF) { 
+                    listaRetorna.add(i);
+                }
+            }
+        }
+        if (tipoCliente.equals("PJ")) {
+            for (Cliente j : listaClientes) {
+                if (j instanceof ClientePJ) { 
+                    listaRetorna.add(j);
+                }
+            }
+        }
+        // fazer retorna STRING
+		return listaRetorna;
+    }
+
+		
+	
 	public boolean gerarSinistro(Sinistro sinistro){
 		listaSinistros.add(sinistro);
 		return true;
 	}
 	public boolean visualizarSinistro(String cliente){
-		System.out.println(sinistro);
-		return true;
-	}
-	public void listarSintros(){
-		for (Sinistro sinistro : listaSinistros){
+		if(ClientePF.validarCPF(cliente)){ //verifica se é PF
+            for (Sinistro i : listaSinistros) {
+                if (i.getCliente() instanceof ClientePF) { 
+                    ClientePF k = (ClientePF) i.getCliente();
+                    if(k.getCpf().equals(cliente)){ 
+                        System.out.println(i);
+                        return true;
+                    }
+                }
+            }
 
+        }else if(ClientePJ.validarCNPJ(cliente)){ // verifica se é PJ
+            for (Sinistro j : listaSinistros) {
+                if (j.getCliente() instanceof ClientePJ) { 
+                    ClientePJ k = (ClientePJ) j.getCliente();
+                    if(k.getCnpj().equals(cliente)){  
+                        System.out.println(j);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+        
+	}
+	public ArrayList<Sinistro> listarSinistros(){
+		//fazer retornar string
+		return listaSinistros;
 		}
-
-		
-	}
 	public String getNome() {
 		return nome;
 	}
