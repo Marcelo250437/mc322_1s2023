@@ -7,7 +7,7 @@ public class Seguradora {
 	private String email ;
 	private String endereco ;
 	private ArrayList<Sinistro>listaSinistros;
-	private ArrayList<Cliente>listaClientes;
+	public ArrayList<Cliente>listaClientes;
 	
 	// Construtor
 	public Seguradora(String nome, String telefone, String email, String endereco) {
@@ -15,19 +15,26 @@ public class Seguradora {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
-		listaSinistros = new ArrayList<Sinistro>();
-		listaClientes = new ArrayList<Cliente>();
+		this.listaSinistros = new ArrayList<Sinistro>();
+		this.listaClientes = new ArrayList<Cliente>();
 
 		
 		
 	}
 	// Getters e setters
 	public boolean cadastrarClientes(Cliente cliente){
-		listaClientes.add(cliente);
+		this.listaClientes.add(cliente);
 		return true;
 	}
 	public boolean removerCliente(String cliente){
-		listaClientes.remove(new Cliente(cliente));
+		int contador = 0;
+		for (Cliente i: listaClientes) {
+			if (i.nome.equals(cliente)){
+				break;
+			}
+				contador ++;			
+		}
+		this.listaClientes.remove(contador);
 		return true;
 	}
 	public ArrayList<Cliente> listarClientes(String tipoCliente){
