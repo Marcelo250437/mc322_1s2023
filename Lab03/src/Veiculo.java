@@ -43,6 +43,6 @@ public class Veiculo {
 	}
 	@Override
      public String toString() {
-		return placa;
+		return String.format("a placa do veiculo é a %s, da %s, modelo %s fabricado no ano de %s ", this.placa, this.marca, this.modelo, this.anoFabricacao);
 		}
 }

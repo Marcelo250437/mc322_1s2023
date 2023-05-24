@@ -1,10 +1,4 @@
-// import java.io.FileInputStream; 
-import java.util.Date;
-// import java.util.Enumeration;
-// import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.InputMismatchException;
 
 
 public class Seguradora {
@@ -12,8 +6,8 @@ public class Seguradora {
 	private String telefone ;
 	private String email ;
 	private String endereco ;
-	private List<Sinistro>listaSinistros=new ArrayList<>();
-	private List<Cliente>listaClientes=new ArrayList<>();
+	private ArrayList<Sinistro>listaSinistros;
+	private ArrayList<Cliente>listaClientes;
 	
 	// Construtor
 	public Seguradora(String nome, String telefone, String email, String endereco) {
@@ -21,6 +15,9 @@ public class Seguradora {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
+		listaSinistros = new ArrayList<Sinistro>();
+		listaClientes = new ArrayList<Cliente>();
+
 		
 		
 	}
@@ -49,7 +46,6 @@ public class Seguradora {
                 }
             }
         }
-        // fazer retorna STRING
 		return listaRetorna;
     }
 
@@ -85,10 +81,11 @@ public class Seguradora {
         return false;
         
 	}
-	public ArrayList<Sinistro> listarSinistros(){
-		//fazer retornar string
-		return listaSinistros;
+	public void listarSinistros(){
+		for (Sinistro k : listaSinistros){
+			System.out.println(k);
 		}
+	}
 	public String getNome() {
 		return nome;
 	}

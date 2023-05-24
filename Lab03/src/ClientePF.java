@@ -1,19 +1,19 @@
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class ClientePF extends Cliente {
     private String CPF ;
-    private Date dataNascimento ;
+    private LocalDate dataNascimento ;
 	private String educacao;
     private String genero;
-    private Date dataLicenca;
+    private LocalDate dataLicenca;
     private String classeEconomica;
+	public ArrayList<Veiculo>listaVeiculos;
 
 
-     public ClientePF ( String nome , String endereco , Date dataLicenca ,
-     String educacao , String genero , String classeEconomica ,
-     List < Veiculo > listaVeiculos , String CPF , Date dataNascimento ) {
+     public ClientePF ( String nome , String endereco , LocalDate dataLicenca ,
+     String educacao , String genero , String classeEconomica , String CPF , LocalDate dataNascimento ) {
      
 	// chama o construtor da superclasse
      super ( nome , endereco);
@@ -34,11 +34,11 @@ public class ClientePF extends Cliente {
 		return CPF;
 	}
 
-     public Date getDataNascimento() {
+     public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getEducacao() {
@@ -57,11 +57,11 @@ public class ClientePF extends Cliente {
         this.genero = genero;
     }
 
-    public Date getDataLicenca() {
+    public LocalDate getDataLicenca() {
         return dataLicenca;
     }
 
-    public void setDataLicenca(Date dataLicenca) {
+    public void setDataLicenca(LocalDate dataLicenca) {
         this.dataLicenca = dataLicenca;
     }
 
@@ -74,10 +74,7 @@ public class ClientePF extends Cliente {
     }
 
     
-     @Override
-     public String toString() {
-		return this.CPF;
-		}
+    
      
      public static boolean validarCPF(String CPF) {
 		// considera-se erro CPF's formados por uma sequencia de numeros iguais
@@ -133,8 +130,13 @@ public class ClientePF extends Cliente {
 				} catch (InputMismatchException erro) {
 				return(false);
 			}
-			}
 
+		}
+		@Override
+		public String toString() {
+			return String.format("o cliente é uma pessoa física, cujo nome é %s, mora no endereço %s, habilitado desde %s", this.nome, this.endereco, this.dataLicenca );
+			
+		}
 
      }   
 

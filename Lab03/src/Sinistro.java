@@ -67,6 +67,10 @@ public class Sinistro {
 	public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
+	@Override
+	public String toString() {
+		return String.format("o id do sinitro é %s, ocorreu no endereço %s, na data de %s", this.id, this.endereco, this.data );
+		
+	}
 	
 }

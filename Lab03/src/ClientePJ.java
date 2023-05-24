@@ -1,16 +1,14 @@
-// import java.io.FileInputStream; 
 import java.util.Date;
-// import java.util.Enumeration;
-// import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class ClientePJ extends Cliente {
     private final String CNPJ ;
     private Date dataFundacao ;
+    public ArrayList<Veiculo>listaVeiculos;
     
     // construtor
-    public ClientePJ ( String nome , String endereco ,List < Veiculo > listaVeiculos, String CNPJ, Date dataFundacao) {
+    public ClientePJ ( String nome , String endereco , String CNPJ, Date dataFundacao) {
      
         // chama o construtor da superclasse
      super ( nome , endereco );
@@ -33,12 +31,7 @@ public class ClientePJ extends Cliente {
 	public void setDataFundacao(Date dataFundacao) {
 		this.dataFundacao = dataFundacao;
 	}
-    // revisar toString
-    @Override
-     public String toString() {
-		return this.CNPJ;
-		}
-     
+    
         public static boolean validarCNPJ(String CNPJ) {
             // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
                 if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
@@ -104,6 +97,10 @@ public class ClientePJ extends Cliente {
                   CNPJ.substring(5, 8) + "." + CNPJ.substring(8, 12) + "-" +
                   CNPJ.substring(12, 14));
               }
-
+              @Override
+              public String toString() {
+                  return String.format("o cliente é uma pessoa jurídica, cujo nome é %s, com sede no endereço %s, fundado em %s", this.nome, this.endereco, this.dataFundacao );
+                  
+              }
 
 }
