@@ -1,14 +1,14 @@
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class ClientePJ extends Cliente {
     private final String CNPJ ;
-    private Date dataFundacao ;
+    private LocalDate dataFundacao ;
     public ArrayList<Veiculo>listaVeiculos;
     
     // construtor
-    public ClientePJ ( String nome , String endereco , String CNPJ, Date dataFundacao) {
+    public ClientePJ ( String nome , String endereco , String CNPJ, LocalDate dataFundacao) {
      
         // chama o construtor da superclasse
      super ( nome , endereco );
@@ -24,11 +24,11 @@ public class ClientePJ extends Cliente {
 		return CNPJ;
 	}
 
-     public Date getDataFundacao() {
+     public LocalDate getDataFundacao() {
 		return dataFundacao;
 	}
 
-	public void setDataFundacao(Date dataFundacao) {
+	public void setDataFundacao(LocalDate dataFundacao) {
 		this.dataFundacao = dataFundacao;
 	}
     

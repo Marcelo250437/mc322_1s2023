@@ -31,10 +31,13 @@ public class Cliente {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public void listaVeiculos(){
+	public void listarVeiculos(){
 		for (Veiculo k : listaVeiculos){
 			System.out.println(k);
 		}
+	}
+	public void addVeiculos(Veiculo veiculo){
+		listaVeiculos.add(veiculo);
 	}
 
 
