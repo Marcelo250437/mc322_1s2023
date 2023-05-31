@@ -21,7 +21,7 @@ public class Seguradora {
 		
 		
 	}
-	// Getters e setters
+	
 	public boolean cadastrarClientes(Cliente cliente){
 		this.listaClientes.add(cliente);
 		return true;
@@ -93,6 +93,7 @@ public class Seguradora {
 			System.out.println(k);
 		}
 	}
+	// Getters e setters
 	public String getNome() {
 		return nome;
 	}

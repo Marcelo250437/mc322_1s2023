@@ -4,6 +4,7 @@ public class Cliente {
 	public String nome ;
 	public String endereco;
 	public ArrayList<Veiculo>listaVeiculos;
+	
 	// Construtor
 	public Cliente(String nome , String endereco) {
 		this.nome = nome;
@@ -39,7 +40,6 @@ public class Cliente {
 	public void addVeiculos(Veiculo veiculo){
 		listaVeiculos.add(veiculo);
 	}
-
 
 	@Override
 	public String toString() {
