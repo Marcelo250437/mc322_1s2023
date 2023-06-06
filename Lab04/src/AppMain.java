@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.xml.crypto.Data;
-public class Main {
+public class AppMain {
 	public static void main(String[] args) {
 		//Criando uma seguradora
 		Seguradora porto = new Seguradora("Porto seguro", "8002-8922", "porto@seguros.com","av.paulista,321 - São Paulo-SP");

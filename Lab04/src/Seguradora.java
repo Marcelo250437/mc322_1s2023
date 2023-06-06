@@ -63,7 +63,7 @@ public class Seguradora {
 		return true;
 	}
 	public boolean visualizarSinistro(String cliente){
-		if(ClientePF.validarCPF(cliente)){ //verifica se é PF
+		if(Validacao.validarCPF(cliente)){ //verifica se é PF
             for (Sinistro i : listaSinistros) {
                 if (i.getCliente() instanceof ClientePF) { 
                     ClientePF k = (ClientePF) i.getCliente();
@@ -74,7 +74,7 @@ public class Seguradora {
                 }
             }
 
-        }else if(ClientePJ.validarCNPJ(cliente)){ // verifica se é PJ
+        }else if(Validacao.validarCNPJ(cliente)){ // verifica se é PJ
             for (Sinistro j : listaSinistros) {
                 if (j.getCliente() instanceof ClientePJ) { 
                     ClientePJ k = (ClientePJ) j.getCliente();
@@ -93,6 +93,48 @@ public class Seguradora {
 			System.out.println(k);
 		}
 	}
+	public void calcularPrecoSeguroCliente(){
+        /* Calcula o preco do seguro de todos os clientes cadastrados na seguradora */
+        for(Cliente c : listaClientes){
+            double preco = c.calculaScore() * (1 + qtdSinistros(c));
+            c.setValorSeguro(preco);
+        }
+    }
+
+    public double calcularReceita(){
+        /* Calcula a receita da seguradora somando o preco de todos os seguros 
+         * Saida: receita calculada
+        */
+        double receita = 0;
+        for(Cliente c : listaClientes){
+            receita += c.getValorSeguro();
+        }
+        return receita;
+    }   
+
+    public boolean transferirSeguro(String cliente1, String cliente2){
+        /* Recebe o cpf/cnpj de dois clientes, troca seus veiculos e recalcula e exibe o novo valor de seguro deles.
+         * Entradas: cliente1, cliente2 (cpf ou cnpj dos dois clientes)
+         * Saida: true se encontrar os clientes e false do contrário
+        */
+        Cliente c1 = encontrarCliente(cliente1);
+        Cliente c2 = encontrarCliente(cliente2);
+
+        if(c1 == null || c2 == null){
+            return false;
+        }else{
+            ArrayList<Veiculo> aux = new ArrayList<Veiculo>();
+            aux = c1.getListaVeiculos();
+            c1.setListaVeiculos(c2.getListaVeiculos());
+            c2.setListaVeiculos(aux);
+
+            calcularPrecoSeguroCliente();
+
+            System.out.println("Transferência de seguro concluída.\nValor do seguro de "+c1.getNome()+": "+c1.getValorSeguro()+
+            "\nValor do seguro de "+c2.getNome()+": "+c2.getValorSeguro());
+            return true;
+        }
+    }
 	// Getters e setters
 	public String getNome() {
 		return nome;

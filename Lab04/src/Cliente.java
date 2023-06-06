@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
-public class Cliente {
-	public String nome ;
-	public String endereco;
-	public ArrayList<Veiculo>listaVeiculos;
+public abstract class Cliente {
+    protected String nome;
+    protected String endereco;
+    protected ArrayList<Veiculo> listaVeiculos;
+    protected double valorSeguro;
 	
 	// Construtor
 	public Cliente(String nome , String endereco) {
@@ -16,6 +17,37 @@ public class Cliente {
 		this.nome = nome;
 
 	}
+	public boolean addVeiculo(Veiculo veiculo){
+        
+        if(!listaVeiculos.contains(veiculo)){
+            listaVeiculos.add(veiculo);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerVeiculo(Veiculo veiculo){
+    
+        if(listaVeiculos.contains(veiculo)){
+            listaVeiculos.remove(veiculo);
+            return true;
+            
+        }
+        return false;
+    }
+
+    public boolean removerVeiculo(String placaVeiculo){
+        for(Veiculo v : listaVeiculos){
+            if(v.getPlaca().equals(placaVeiculo)){
+                listaVeiculos.remove(v);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public abstract double calculaScore();
+    
 	// Getters e setters
 	public String getNome() {
 		return nome;

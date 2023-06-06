@@ -5,6 +5,9 @@ public class Veiculo {
 	private int anoFabricacao;
 	
 	// Constructor
+	public Veiculo() {
+    }
+	
 	public Veiculo(String placa, String marca, String modelo, int anoFabricacao) {
 		this.placa = placa;
 		this.marca = marca;

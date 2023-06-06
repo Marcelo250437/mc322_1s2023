@@ -7,9 +7,15 @@ public class Sinistro {
 	private Seguradora seguradora;
 	private Veiculo veiculo;
 	private Cliente cliente;
+	private static int numSinistros = 0; // conta quantos objetos da classe Sinistro ja foram criados, e eh usada para atribuir os ids
+
 
 	
 	// Construtor
+	public Sinistro() {
+        this.id = numSinistros;
+        numSinistros++;
+    }
 	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
 		this.data = data;
 		this.endereco = endereco;
@@ -66,6 +72,13 @@ public class Sinistro {
     }
 	public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+	public static int getNumSinistros() {
+        return numSinistros;
+    }
+
+    public static void setNumSinistros(int numSinistros) {
+        Sinistro.numSinistros = numSinistros;
     }
 	@Override
 	public String toString() {
