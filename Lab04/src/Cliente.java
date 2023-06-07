@@ -77,6 +77,8 @@ public abstract class Cliente {
 	public String toString() {
 		return String.format("o cliente é o %s e mora no endereço %s", this.nome, this.endereco);
 		}
+    public void setValorSeguro(double preco) {
+    }
 
 	
 }

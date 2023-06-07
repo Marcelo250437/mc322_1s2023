@@ -19,10 +19,10 @@ public class AppMain {
 		System.out.println(porto.listarClientes("PF"));
 
 		// Validando CPF
-		System.out.println(ClientePF.validarCPF("50443074836"));
+		System.out.println(Validacao.validarCPF("50443074836"));
 		
 		//Validando CNPJ
-		System.out.println(ClientePJ.validarCNPJ("45990181000189"));
+		System.out.println(Validacao.validarCNPJ("45990181000189"));
 		
 		// Adicionando um veiculo
 		Veiculo bmw = new Veiculo("bmw2023", "BMW","320", 2023);
@@ -164,7 +164,6 @@ public class AppMain {
 	}while(!sair.equals("sim"));
 
 		
-// teste
 
 	}
 }
