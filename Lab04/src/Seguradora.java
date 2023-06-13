@@ -88,6 +88,46 @@ public class Seguradora {
         return false;
         
 	}
+	public Cliente encontrarCliente(String cliente){
+        /* Localiza um cliente na listaClientes com base no seu cpf/cnpj
+         * Entrada: String cliente (cpf ou cnpj do cliente buscado)
+         * Saída: Cliente procurado (retorna null se não encontrar)
+        */
+        if(Validacao.validarCPF(cliente)){
+            for (Cliente c : listaClientes) { 
+                if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
+                    ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
+                    if (k.getCpf().equals(cliente)) {
+                        return k;
+                    }
+                }
+            }
+        }else if(Validacao.validarCNPJ(cliente)){
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
+                    ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
+                    if (k.getCnpj().equals(cliente)) {
+                        return k;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+	public int qtdSinistros(Cliente c){
+        /* Conta os sinistros associados a um cliente c
+         * Entrada: Cliente c (cliente cujos sinistros serão contados)
+         * Saida: numero de sinistros
+        */
+        int n = 0;
+        for(Sinistro s : listaSinistros){
+            if (s.getCliente().equals(c)){
+                n++;
+            }
+        }
+        return n;
+    }
 	public void listarSinistros(){
 		for (Sinistro k : listaSinistros){
 			System.out.println(k);

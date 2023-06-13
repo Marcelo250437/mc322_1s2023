@@ -72,13 +72,27 @@ public abstract class Cliente {
 	public void addVeiculos(Veiculo veiculo){
 		listaVeiculos.add(veiculo);
 	}
+	public ArrayList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
+    }
 
 	@Override
 	public String toString() {
 		return String.format("o cliente é o %s e mora no endereço %s", this.nome, this.endereco);
 		}
-    public void setValorSeguro(double preco) {
-    }
+		public double getValorSeguro() {
+			return valorSeguro;
+		}
+	
+	
+		public void setValorSeguro(double valorSeguro) {
+			this.valorSeguro = valorSeguro;
+		}
+	
 
 	
 }

@@ -3,11 +3,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 public class AppMain {
 	public static void main(String[] args) {
+		ArrayList<Seguradora> seguradoras = new ArrayList<Seguradora>();
 		//Criando uma seguradora
 		Seguradora porto = new Seguradora("Porto seguro", "8002-8922", "porto@seguros.com","av.paulista,321 - São Paulo-SP");
-		
+		seguradoras.add(porto); 
 		// Adicionando um Cliente
 		LocalDate data =  LocalDate.of(1990,05,19);
 		ClientePF cliente1 = new ClientePF("Marcelo Aguiar", "av.jonh boyd, numero 123, Campinas - SP" ,data, "superior", "masculino", "média", "50443074836", data);
@@ -71,7 +73,9 @@ public class AppMain {
 				"3.Remover cliente\n"+
 				"4.listar cliente\n"+
 				"5.Visualizar sinistro\n"+
-				"6.Listar sinistro\n");
+				"6.Listar sinistro\n"+
+				"7.Transferir Seguro\n"+
+                "8.Calcular Receita da Seguradora\n");
 				opcoes = input.nextInt();
 			
 				input.nextLine();
@@ -144,7 +148,7 @@ public class AppMain {
 					case 6:
 						porto.listarSinistros();
 						break;
-
+					
 					}
 				}
 			catch(InputMismatchException e){
@@ -166,4 +170,5 @@ public class AppMain {
 		
 
 	}
+	
 }
