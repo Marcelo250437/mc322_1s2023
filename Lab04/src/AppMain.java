@@ -77,7 +77,7 @@ public class AppMain {
 				"7.Transferir Seguro\n"+
                 "8.Calcular Receita da Seguradora\n");
 				opcoes = input.nextInt();
-			
+			//teste
 				input.nextLine();
 				switch (opcoes){
 					//executando as opções escolhidas
