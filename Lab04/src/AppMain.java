@@ -61,7 +61,7 @@ public class AppMain {
     public static void criarMenu(){
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.ENGLISH);
-
+        // opções do menu
         loop: while (true){
             System.out.println("\n ----MENU----\nEscolha uma das opções digitando o número correspondente:\n"+
                                 "1 Cadastrar\n"+
@@ -72,10 +72,9 @@ public class AppMain {
                                 "6 Calcular Receita da Seguradora\n"+
                                 "0 Sair");
 
-            MenuOperacoes operacao = MenuOperacoes.valor(entrada.nextDouble());
-            
-            
+            MenuOperacoes operacao = MenuOperacoes.valor(entrada.nextDouble());   
             switch(operacao){
+                //opções cadastrar
                 case CADASTRAR:{
                     System.out.println("\n----CADASTRAR----\nEscolha uma das opções digitando o número correspondente:\n"+
                                         "1.1 Cadastrar Cliente\n"+
@@ -83,7 +82,7 @@ public class AppMain {
                                         "1.3 Cadastrar Seguradora\n"+
                                         "1.4 Voltar");
                     MenuOperacoes opCad = MenuOperacoes.valor(entrada.nextDouble());
-                    
+                    //opção cadastrar cliente
                     switch(opCad){
                         case CAD_CLIENTE:{
                             imprimirIDSeguradoras();
@@ -149,7 +148,7 @@ public class AppMain {
                                 break;
                             }
                         }break;
-
+                        //opção cadastrar veiculo
                         case CAD_VEICULO:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
@@ -177,9 +176,8 @@ public class AppMain {
                             }
 
                         }break;
-
+                        //opção cadastrar seguradora
                         case CAD_SEGURADORA:{
-
                             entrada.nextLine(); //para nao pular o proximo
                             System.out.println("Nome da nova seguradora:");
                             String nome = entrada.nextLine();
@@ -205,7 +203,7 @@ public class AppMain {
 
                     }
                 }break;
-
+                //opções listar
                 case LISTAR:{
                     System.out.println("\n----LISTAR----\nEscolha uma das opções digitando o número correspondente:\n"+
                                 "2.1 Listar Cliente por Seguradora\n"+
@@ -215,13 +213,13 @@ public class AppMain {
                                 "2.5 Listar Veiculo por Seguradora\n"+
                                 "2.6 Voltar");
                     MenuOperacoes opListar = MenuOperacoes.valor(entrada.nextDouble());
-
+                    //opção listar cliente
                     switch(opListar){
                         case LISTAR_CLIENTE:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
 
-                            entrada.nextLine(); //para nao pular o proximo
+                            entrada.nextLine();
                             System.out.println("Insira o tipo de cliente (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
                             String tipo = entrada.nextLine();
                             
@@ -231,17 +229,17 @@ public class AppMain {
                                 System.out.println("Comando inválido");
                             }
                         }break;
-
+                        //opção listar sinistros da seguradora
                         case LISTAR_SINISTROS_SEG:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
                             System.out.println(s.listarSinistros());
                         }break;
-
+                        //opção listar sinistros do cliente
                         case LISTAR_SINISTROS_CLI:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            entrada.nextLine(); 
 
                             System.out.println("Insira o cpf/cnpj do cliente cujos sinistros deseja listar");
                             String cliente = entrada.nextLine();
@@ -249,11 +247,11 @@ public class AppMain {
                                 System.out.println("Esse cliente não foi cadastrado ou não há sinistros associados a ele.");
                             }
                         }break;
-
+                        //opção listar veiculos do cliente
                         case LISTAR_VEICULOS_CLI:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            entrada.nextLine(); 
 
                             System.out.println("Insira o cpf/cnpj do cliente:");
                             String cliente = entrada.nextLine();
@@ -265,13 +263,13 @@ public class AppMain {
                                 System.out.println("Cliente inválido");
                             }
                         }break;
-
+                        //opção listar veiculos da seguradora
                         case LISTAR_VEICULOS_SEG:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
                             System.out.println("Imprimindo veículos da da Seguradora "+s.getNome()+"\n"+s.listarVeiculosClientes());
                         }break;
-
+                        //opção voltar listar
                         case VOLTAR_LISTAR:
                             continue loop;
 
@@ -282,7 +280,7 @@ public class AppMain {
                     }
 
                 }break;
-
+                //opções excluir
                 case EXCLUIR:{
                 System.out.println("\n ----EXCLUIR----\nEscolha uma das opções digitando o número correspondente:\n"+
                                         "3.1 Excluir Cliente\n"+
@@ -290,12 +288,12 @@ public class AppMain {
                                         "3.3 Excluir Sinistro\n"+
                                         "3.4 Voltar");
                     MenuOperacoes opExcluir = MenuOperacoes.valor(entrada.nextDouble());
-                    
+                    //opção excluir cliente
                     switch(opExcluir){
                         case EXCLUIR_CLIENTE:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            entrada.nextLine(); 
 
                             System.out.println("Insira o cpf/cnpj do cliente que deseja excluir:");
                             String cliente = entrada.nextLine();
@@ -306,11 +304,11 @@ public class AppMain {
                                 System.out.println("Cliente não encontrado");
                             }
                         }break;
-
+                        //opção excluir veiculo
                         case EXCLUIR_VEICULO:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine();//para nao pular o proximo
+                            entrada.nextLine();
 
                             System.out.println("Insira a placa do veículo a ser removido:");
                             String placa = entrada.nextLine();
@@ -320,7 +318,7 @@ public class AppMain {
                                 System.out.println("Veiculo não encontrado");
                             }
                         }break;
-
+                        //opção excluir sinistro
                         case EXCLUIR_SINISTRO:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
@@ -334,7 +332,7 @@ public class AppMain {
                             
                     
                         }break;
-
+                        //opção voltar excluir
                         case VOLTAR_EXCLUIR:
                             continue loop;
 
@@ -344,11 +342,11 @@ public class AppMain {
 
                     }
                 }break;
-
+                //opção gerar sinistro
                 case GERAR_SINISTRO:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    entrada.nextLine();
 
                     System.out.println("Insira o cpf/cnpj do cliente para o qual será gerado o sinistro");
                     String cliente = entrada.nextLine();
@@ -381,11 +379,11 @@ public class AppMain {
                     }
                             
                 }break;
-
+                //opção transferir seguro
                 case TRANSFERIR_SEGURO:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    entrada.nextLine();
 
                     System.out.println("Insira o cpf/cnpj do primeiro cliente da transferência: ");
                     String cliente1 = entrada.nextLine();
@@ -397,14 +395,14 @@ public class AppMain {
                     }
 
                 }break;
-
+                //opção calcular receita
                 case CALC_RECEITA:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
                     s.calcularPrecoSeguroCliente();
                     System.out.println("A receita total da seguradora "+s.getNome()+" é de "+s.calcularReceita());
                 }break;
-
+                //opção sair
                 case SAIR:
                     System.out.println("Saindo...");
                     break loop;
@@ -418,7 +416,6 @@ public class AppMain {
     }
 
     public static void imprimirIDSeguradoras(){
-        //Imprime todas as seguradoras existentes e seus respectivos ids
         System.out.println("Escolha uma das seguradoras digitando seu id:");
         for (int i=0; i < seguradoras.size(); i++){
             System.out.println("ID "+ i + " - "+ seguradoras.get(i).getNome());
