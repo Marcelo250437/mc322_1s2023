@@ -62,6 +62,21 @@ public class Seguradora {
 		listaSinistros.add(sinistro);
 		return true;
 	}
+    public boolean excluirSinistro(int id){
+        /* Exclui um Sinistro da listaSinistros com base no seu campo "id"
+         * Entrada: int id (id do sinistro)
+         * Saida: true se encontrar o sinistro e false do contrário
+        */
+    
+        for (Sinistro s : listaSinistros){
+            if (s.getId() == id){
+                listaSinistros.remove(s);
+                return true;
+            }
+        }
+        return false;
+    }
+
 	public boolean visualizarSinistro(String cliente){
 		if(Validacao.validarCPF(cliente)){ //verifica se é PF
             for (Sinistro i : listaSinistros) {
@@ -115,6 +130,32 @@ public class Seguradora {
         return null;
     }
 
+    public ArrayList<Veiculo> listarVeiculosClientes(){
+        /* Lista e retorna os veiculos de todos os clientes da seguradora
+         * Saida: veiculosSeguradora (arraylist contendo todos os veiculos cadastrados)
+        */
+        ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
+        for (Cliente c : listaClientes){
+            for (Veiculo v : c.getListaVeiculos()){
+                veiculosSeguradora.add(v);
+            }
+        }
+        return veiculosSeguradora;
+    }
+
+    public boolean excluirVeiculoCliente(String placa){
+        /* Exclui veiculo com base na placa
+         * Entrada: String placa (placa do veiculo a ser excluido)
+         * Saida: valor booleano (true se conseguir remover algum veículo, false do contrário)
+        */
+        for(Cliente c : listaClientes){
+            if(c.removerVeiculo(placa)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 	public int qtdSinistros(Cliente c){
         /* Conta os sinistros associados a um cliente c
          * Entrada: Cliente c (cliente cujos sinistros serão contados)
@@ -128,10 +169,9 @@ public class Seguradora {
         }
         return n;
     }
-	public void listarSinistros(){
-		for (Sinistro k : listaSinistros){
-			System.out.println(k);
-		}
+	public ArrayList<Sinistro> listarSinistros(){
+		return listaSinistros;
+		
 	}
 	public void calcularPrecoSeguroCliente(){
         /* Calcula o preco do seguro de todos os clientes cadastrados na seguradora */
