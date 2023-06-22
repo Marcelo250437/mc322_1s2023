@@ -9,7 +9,7 @@ public class ClientePJ extends Cliente {
     private int qtdFuncionarios;
     
     // construtor
-    public ClientePJ ( String nome , String endereco , String CNPJ, LocalDate dataFundacao) {
+    public ClientePJ ( String nome , String endereco , String CNPJ, LocalDate dataFundacao, int qtdFuncionarios) {
      
         // chama o construtor da superclasse
      super ( nome , endereco );
