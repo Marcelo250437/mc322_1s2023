@@ -1,8 +1,3 @@
-/*
- * SeguroPF.java
- * Ultima modificacao: 29/05/2023
- * Material usado na disciplina MC322
- */
 
 import java.time.LocalDate;
 
@@ -28,10 +23,7 @@ public class SeguroPF extends Seguro{
         return dados;
     }
 
-    /**
-     * Calcula o valor do SeguroPF, atualiza o atributo valorMensal e retorna o valor calculado
-     * @return valor mensal calculado
-     */
+   
     @Override
     public double calcularValor(){
         double valor = 0;

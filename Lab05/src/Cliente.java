@@ -1,98 +1,66 @@
-import java.util.ArrayList;
 
 public abstract class Cliente {
     protected String nome;
+    protected String telefone;
     protected String endereco;
-    protected ArrayList<Veiculo> listaVeiculos;
-    protected double valorSeguro;
-	
-	// Construtor
-	public Cliente(String nome , String endereco) {
-		this.nome = nome;
-		this.endereco = endereco;
-		listaVeiculos =new ArrayList<Veiculo>();
-	
-	}	
-	public Cliente(String nome){
-		this.nome = nome;
+    protected String email;
 
-	}
-	public boolean addVeiculo(Veiculo veiculo){
-        
-        if(!listaVeiculos.contains(veiculo)){
-            listaVeiculos.add(veiculo);
-            return true;
-        }
-        return false;
+    // construtor
+    public Cliente(String nome, String telefone, String endereco, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.email = email;
     }
-
-    public boolean removerVeiculo(Veiculo veiculo){
     
-        if(listaVeiculos.contains(veiculo)){
-            listaVeiculos.remove(veiculo);
-            return true;
-            
-        }
-        return false;
+    public String toString() {
+        String dados = "";
+        dados += "Nome: " + this.nome + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco
+                + "\nEmail:\n"+ this.email+"\n";
+
+        return dados;
     }
 
-    public boolean removerVeiculo(String placaVeiculo){
-        for(Veiculo v : listaVeiculos){
-            if(v.getPlaca().equals(placaVeiculo)){
-                listaVeiculos.remove(v);
-                return true;
-            }
-        }
-        return false;
+    public abstract int qtdVeiculos();
+
+    // getters e setters:
+    public String getNome() {
+        return nome;
     }
 
-    public abstract double calculaScore();
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     
-	// Getters e setters
-	public String getNome() {
-		return nome;
-	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public void listarVeiculos(){
-		for (Veiculo k : listaVeiculos){
-			System.out.println(k);
-		}
-	}
-	public void addVeiculos(Veiculo veiculo){
-		listaVeiculos.add(veiculo);
-	}
-	public ArrayList<Veiculo> getListaVeiculos() {
-        return listaVeiculos;
-    }
-
-    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
-        this.listaVeiculos = listaVeiculos;
-    }
-
-	@Override
-	public String toString() {
-		return String.format("o cliente é o %s e mora no endereço %s", this.nome, this.endereco);
-		}
-		public double getValorSeguro() {
-			return valorSeguro;
-		}
-	
-	
-		public void setValorSeguro(double valorSeguro) {
-			this.valorSeguro = valorSeguro;
-		}
-	
-
-	
+    
 }

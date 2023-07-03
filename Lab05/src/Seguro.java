@@ -1,8 +1,4 @@
-/*
- * Seguro.java
- * Ultima modificacao: 21/05/2023
- * Material usado na disciplina MC322
- */
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +13,6 @@ public abstract class Seguro {
     protected double valorMensal;
     protected static int numSeguros = 0;
 
-    //construtor
     public Seguro(LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora) {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -30,11 +25,7 @@ public abstract class Seguro {
 
     public abstract String toString();
 
-    /**
-     * Recebe o cpf de um condutor e o remove da lista de condutores do seguro
-     * @param cpf (cpf do condutor a ser desautorizado)
-     * @return valor booleano (true se encontrar condutor com esse cpf, false do contrário)
-     */
+   
     public boolean desautorizarCondutor(String cpf){
         for (Condutor c : listaCondutores){
             if(c.getCpf().equals(cpf)){
@@ -45,11 +36,7 @@ public abstract class Seguro {
         return false;
     }
 
-    /**
-     * Insere um condutor na listaCondutores do seguro
-     * @param condutor (condutor a ser inserido)
-     * @return valor booleano (true se a inserção ocorrer com sucesso, false do contrario)
-     */
+   
     public boolean autorizarCondutor(Condutor condutor){
         if(Validacao.validarCPF(condutor.getCpf()) && Validacao.validarNome(condutor.getNome()) && !listaCondutores.contains(condutor)){
             listaCondutores.add(condutor);
@@ -60,19 +47,15 @@ public abstract class Seguro {
         
     }
 
-    /**
-     * Insere sinistro na listaSinistros do seguro e do condutor correspondente
-     * @param sinistro (sinistro a ser gerado)
-     * @return boolean (true se inserir com sucesso, false do contrario)
-     */
+   
     public boolean gerarSinistro(Sinistro sinistro){
         listaSinistros.add(sinistro);
         for (Condutor c : listaCondutores){
-            if(sinistro.getCondutor().equals(c)){ //se achar o condutor, insere o sinistro na lista dele tambem
+            if(sinistro.getCondutor().equals(c)){ 
                 return c.adicionarSinistro(sinistro);
             }
         }
-        //se nao achar condutor igual, autoriza (insere) o condutor e insere o sinistro na lista dele
+        
         autorizarCondutor(sinistro.getCondutor());
 
         calcularValor(); //atualiza o valor do seguro
@@ -80,10 +63,7 @@ public abstract class Seguro {
         return sinistro.getCondutor().adicionarSinistro(sinistro);
     }
 
-    /**
-     * Soma a quantidade de Sinistros de todos os Condutores do Seguro
-     * @return qtd total de Sinistros dos Condutores
-     */
+  
     public int qtdSinistrosCondutores(){
         int qtd = 0;
         for(Condutor c : listaCondutores){
@@ -92,11 +72,7 @@ public abstract class Seguro {
         return qtd;
     }
 
-    /**
-     * Retorna Condutor da listaCondutores baseado em seu cpf
-     * @param cpf (cpf do condutor)
-     * @return objeto Condutor se o encontrar, null do contrário
-     */
+    
     public Condutor getCondutorPorCPF(String cpf){
         for (Condutor c : listaCondutores){
             if(c.getCpf().equals(cpf)){

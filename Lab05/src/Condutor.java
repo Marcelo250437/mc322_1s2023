@@ -1,8 +1,3 @@
-/*
- * Condutor.java
- * Ultima modificacao: 01/06/2023
- * Material usado na disciplina MC322
- */
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,23 +25,16 @@ public class Condutor {
     public String toString(){
         String dados = "";
         dados += "CPF: " + cpf + "\nNome: " + nome + "\nTelefone: " + telefone + "\nEndereco: " + endereco + "\nEmail: " + email
-                + "\nData de nascimento: " + dataNasc + "\n"; //nao inclui a listaSinistros pra nao entrar em loop infinito
+                + "\nData de nascimento: " + dataNasc + "\n"; 
         return dados;
     }
 
-    /**
-     * Adiciona um sinistro na listaSinistros do condutor
-     * @param sinistro (sinistro a ser adicionado)
-     * @return boolean correspondente ao retorno do metodo add()
-     */
+    
     public boolean adicionarSinistro(Sinistro sinistro){
         return listaSinistros.add(sinistro);
     }
 
-    /**
-     * Lista os Sinistros do Condutor
-     * @return arraylist contendo os Sinistros
-     */
+   
     public ArrayList<Sinistro> listarSinistros() {
         return listaSinistros;
     }

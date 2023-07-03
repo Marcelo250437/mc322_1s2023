@@ -1,117 +1,118 @@
+
+
 import java.util.ArrayList;
 
-
 public class Seguradora {
-	private String nome ;
-	private String telefone ;
-	private String email ;
-	private String endereco ;
-	private ArrayList<Sinistro>listaSinistros;
-	public ArrayList<Cliente>listaClientes;
-	
-	// Construtor
-	public Seguradora(String nome, String telefone, String email, String endereco) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
-		this.endereco = endereco;
-		this.listaSinistros = new ArrayList<Sinistro>();
-		this.listaClientes = new ArrayList<Cliente>();
+    private final String cnpj;
+    private String nome;
+    private String telefone;
+    private String email;
+    private String endereco;
+    private ArrayList<Seguro> listaSeguros;
+    private ArrayList<Cliente> listaClientes;
 
-		
-		
-	}
-	
-	public boolean cadastrarClientes(Cliente cliente){
-		this.listaClientes.add(cliente);
-		return true;
-	}
-	public boolean removerCliente(String cliente){
-		int contador = 0;
-		for (Cliente i: listaClientes) {
-			if (i.nome.equals(cliente)){
-				break;
-			}
-				contador ++;			
-		}
-		this.listaClientes.remove(contador);
-		return true;
-	}
-	public ArrayList<Cliente> listarClientes(String tipoCliente){
-		ArrayList<Cliente> listaRetorna = new ArrayList<Cliente>();
-		if (tipoCliente.equals("PF")) {
-            for (Cliente i : listaClientes) {
-                if (i instanceof ClientePF) { 
-                    listaRetorna.add(i);
-                }
-            }
-        }
-        if (tipoCliente.equals("PJ")) {
-            for (Cliente j : listaClientes) {
-                if (j instanceof ClientePJ) { 
-                    listaRetorna.add(j);
-                }
-            }
-        }
-		return listaRetorna;
+    // construtor
+    public Seguradora(String cnpj, String nome, String telefone, String email, String endereco) {
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+        listaSeguros = new ArrayList<Seguro>();
+        listaClientes = new ArrayList<Cliente>();
     }
 
-		
-	
-	public boolean gerarSinistro(Sinistro sinistro){
-		listaSinistros.add(sinistro);
-		return true;
-	}
-    public boolean excluirSinistro(int id){
-        /* Exclui um Sinistro da listaSinistros com base no seu campo "id"
-         * Entrada: int id (id do sinistro)
-         * Saida: true se encontrar o sinistro e false do contrário
-        */
-    
-        for (Sinistro s : listaSinistros){
-            if (s.getId() == id){
-                listaSinistros.remove(s);
-                return true;
-            }
-        }
-        return false;
+    public String toString() { 
+        String dados = "";
+        dados += "CNPJ: " + this.cnpj + "\nNome: " + this.nome + "\nData Licenca: " + this.telefone
+                + "\nEmail: " + this.email + "\nEndereco: " + this.endereco ;
+
+        return dados;
     }
 
-	public boolean visualizarSinistro(String cliente){
-		if(Validacao.validarCPF(cliente)){ //verifica se é PF
-            for (Sinistro i : listaSinistros) {
-                if (i.getCliente() instanceof ClientePF) { 
-                    ClientePF k = (ClientePF) i.getCliente();
-                    if(k.getCpf().equals(cliente)){ 
-                        System.out.println(i);
-                        return true;
-                    }
-                }
-            }
 
-        }else if(Validacao.validarCNPJ(cliente)){ // verifica se é PJ
-            for (Sinistro j : listaSinistros) {
-                if (j.getCliente() instanceof ClientePJ) { 
-                    ClientePJ k = (ClientePJ) j.getCliente();
-                    if(k.getCnpj().equals(cliente)){  
-                        System.out.println(j);
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+    public ArrayList<Cliente> listarClientes(){
+        return listaClientes;
+    }
+
+ 
+    public ArrayList<Cliente> listarClientes(String tipoCliente) {
         
-	}
-	public Cliente encontrarCliente(String cliente){
-        /* Localiza um cliente na listaClientes com base no seu cpf/cnpj
-         * Entrada: String cliente (cpf ou cnpj do cliente buscado)
-         * Saída: Cliente procurado (retorna null se não encontrar)
-        */
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        if (tipoCliente.equals("pf")) {
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePF) { 
+                    lista.add(c);
+                }
+            }
+        }
+        if (tipoCliente.equals("pj")) {
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePJ) { 
+                    lista.add(c);
+                }
+            }
+        }
+        return lista;
+    }
+
+   
+    public boolean cadastrarCliente(ClientePF cliente) {
+
+        if (Validacao.validarCPF(cliente.getCpf()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
+            listaClientes.add(cliente);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
+    public boolean cadastrarCliente(ClientePJ cliente) {
+
+        if (Validacao.validarCNPJ(cliente.getCnpj()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
+            listaClientes.add(cliente);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
+    public boolean removerCliente(String cliente) {
+
         if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
-                if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
-                    ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
+                if (c instanceof ClientePF) {  
+                    ClientePF k = (ClientePF) c; 
+                    if (k.getCpf().equals(cliente)) {
+                        listaClientes.remove(c);
+                        return true;
+                    }
+                }
+            }
+        }else if(Validacao.validarCNPJ(cliente)){
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePJ) { 
+                    ClientePJ k = (ClientePJ) c; 
+                    if (k.getCnpj().equals(cliente)) {
+                        listaClientes.remove(c);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+
+    }
+
+  
+    public Cliente encontrarCliente(String cliente){ 
+
+        if(Validacao.validarCPF(cliente)){
+            for (Cliente c : listaClientes) { 
+                if (c instanceof ClientePF) { 
+                    ClientePF k = (ClientePF) c; 
                     if (k.getCpf().equals(cliente)) {
                         return k;
                     }
@@ -119,8 +120,8 @@ public class Seguradora {
             }
         }else if(Validacao.validarCNPJ(cliente)){
             for (Cliente c : listaClientes) {
-                if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
-                    ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
+                if (c instanceof ClientePJ) {  
+                    ClientePJ k = (ClientePJ) c; 
                     if (k.getCnpj().equals(cliente)) {
                         return k;
                     }
@@ -130,122 +131,202 @@ public class Seguradora {
         return null;
     }
 
-    public ArrayList<Veiculo> listarVeiculosClientes(){
-        /* Lista e retorna os veiculos de todos os clientes da seguradora
-         * Saida: veiculosSeguradora (arraylist contendo todos os veiculos cadastrados)
-        */
-        ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
-        for (Cliente c : listaClientes){
-            for (Veiculo v : c.getListaVeiculos()){
-                veiculosSeguradora.add(v);
-            }
-        }
-        return veiculosSeguradora;
+   
+    public boolean gerarSeguro(Seguro seguro){
+        return listaSeguros.add(seguro);
     }
 
-    public boolean excluirVeiculoCliente(String placa){
-        /* Exclui veiculo com base na placa
-         * Entrada: String placa (placa do veiculo a ser excluido)
-         * Saida: valor booleano (true se conseguir remover algum veículo, false do contrário)
-        */
-        for(Cliente c : listaClientes){
-            if(c.removerVeiculo(placa)){
+    
+    public boolean cancelarSeguro(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                listaSeguros.remove(s);
                 return true;
             }
         }
         return false;
+        
     }
 
-	public int qtdSinistros(Cliente c){
-        /* Conta os sinistros associados a um cliente c
-         * Entrada: Cliente c (cliente cujos sinistros serão contados)
-         * Saida: numero de sinistros
-        */
-        int n = 0;
-        for(Sinistro s : listaSinistros){
-            if (s.getCliente().equals(c)){
-                n++;
+    
+    public ArrayList<Seguro> getSegurosPorCliente(String cliente){
+        ArrayList<Seguro> segurosCliente = new ArrayList<Seguro>();
+
+        if(Validacao.validarCPF(cliente)){ 
+            for (Seguro s : listaSeguros) {
+                if (s.getCliente() instanceof ClientePF) { 
+                    ClientePF k = (ClientePF) s.getCliente();
+                    if(k.getCpf().equals(cliente)){ 
+                        segurosCliente.add(s);
+                    }
+                }
+            }
+
+        }else if(Validacao.validarCNPJ(cliente)){ 
+            for (Seguro s : listaSeguros) {
+                if (s.getCliente() instanceof ClientePJ) { 
+                    ClientePJ k = (ClientePJ) s.getCliente();
+                    if(k.getCnpj().equals(cliente)){  
+                        segurosCliente.add(s);
+                    }
+                }
             }
         }
-        return n;
-    }
-	public ArrayList<Sinistro> listarSinistros(){
-		return listaSinistros;
-		
-	}
-	public void calcularPrecoSeguroCliente(){
-        /* Calcula o preco do seguro de todos os clientes cadastrados na seguradora */
-        for(Cliente c : listaClientes){
-            double preco = c.calculaScore() * (1 + qtdSinistros(c));
-            c.setValorSeguro(preco);
-        }
+        return segurosCliente;
     }
 
-    public double calcularReceita(){
-        /* Calcula a receita da seguradora somando o preco de todos os seguros 
-         * Saida: receita calculada
-        */
-        double receita = 0;
-        for(Cliente c : listaClientes){
-            receita += c.getValorSeguro();
+   
+    public ArrayList<Seguro> getSegurosPorCliente(Cliente cliente){
+        ArrayList<Seguro> segurosCliente = new ArrayList<Seguro>();
+        for(Seguro s : listaSeguros){
+            if (s.getCliente().equals(cliente)){
+                segurosCliente.add(s);
+            }
         }
-        return receita;
+        return segurosCliente;
+    }
+
+   
+    public ArrayList<Sinistro> getSinistrosPorCliente(String cliente){
+        ArrayList<Sinistro> sinistrosCliente = new ArrayList<Sinistro>();
+
+        if(Validacao.validarCPF(cliente)){ 
+            for (Seguro s : listaSeguros) {
+                if (s.getCliente() instanceof ClientePF) { 
+                    ClientePF k = (ClientePF) s.getCliente();
+                    if(k.getCpf().equals(cliente)){
+                        sinistrosCliente.addAll(s.getListaSinistros());
+                    }
+                }
+            }
+
+        }else if(Validacao.validarCNPJ(cliente)){
+            for (Seguro s : listaSeguros) {
+                if (s.getCliente() instanceof ClientePJ) { 
+                    ClientePJ k = (ClientePJ) s.getCliente();
+                    if(k.getCnpj().equals(cliente)){  
+                        sinistrosCliente.addAll(s.getListaSinistros());
+                    }
+                }
+            }
+        }
+        return sinistrosCliente;
+    }
+
+  
+    public ArrayList<Sinistro> getSinistrosPorCliente(Cliente cliente){
+        ArrayList<Sinistro> sinistrosCliente = new ArrayList<Sinistro>();
+        for(Seguro s : listaSeguros){
+            if (s.getCliente().equals(cliente)){
+                sinistrosCliente.addAll(s.getListaSinistros());
+            }
+        }
+        return sinistrosCliente;
+    }
+
+    
+    public ArrayList<Seguro> listarSeguros(){
+        return listaSeguros;
+    }
+
+   
+    public ArrayList<Sinistro> listarSinistros(){
+        ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
+        for(Seguro s : listaSeguros){
+            sinistros.addAll(s.getListaSinistros());
+        }
+        return sinistros;
+    }
+
+    
+    public void calcularReceita(){
+        double receitaTotal = 0;
+        for(Cliente c : listaClientes){
+            double receita = 0;
+            String cliente;
+
+            if(c instanceof ClientePF){
+                cliente = ((ClientePF)c).getCpf();
+            }else{
+                cliente = ((ClientePJ)c).getCnpj();
+            }
+            for(Seguro s : listaSeguros){
+                if (s.getCliente().equals(c)){
+                    receita += s.calcularValor(); 
+                }
+            }
+            receitaTotal += receita;
+            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + receita); 
+        }
+        System.out.println("Receita total da seguradora " + nome + ": " + receitaTotal);
+
     }   
 
-    public boolean transferirSeguro(String cliente1, String cliente2){
-        /* Recebe o cpf/cnpj de dois clientes, troca seus veiculos e recalcula e exibe o novo valor de seguro deles.
-         * Entradas: cliente1, cliente2 (cpf ou cnpj dos dois clientes)
-         * Saida: true se encontrar os clientes e false do contrário
-        */
-        Cliente c1 = encontrarCliente(cliente1);
-        Cliente c2 = encontrarCliente(cliente2);
 
-        if(c1 == null || c2 == null){
-            return false;
-        }else{
-            ArrayList<Veiculo> aux = new ArrayList<Veiculo>();
-            aux = c1.getListaVeiculos();
-            c1.setListaVeiculos(c2.getListaVeiculos());
-            c2.setListaVeiculos(aux);
-
-            calcularPrecoSeguroCliente();
-
-            System.out.println("Transferência de seguro concluída.\nValor do seguro de "+c1.getNome()+": "+c1.getValorSeguro()+
-            "\nValor do seguro de "+c2.getNome()+": "+c2.getValorSeguro());
-            return true;
+    public ArrayList<Sinistro> getSinistrosPorSeguro(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s.getListaSinistros();
+            }
         }
+        return null;
     }
-	// Getters e setters
-	public String getNome() {
-		return nome;
-	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+   
+    public ArrayList<Condutor> getCondutoresPorSeguro(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s.getListaCondutores();
+            }
+        }
+        return null;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    
+    public Seguro getSeguroPorID(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s;
+            }
+        }
+        return null;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    // getters e setters
+    public String getNome() {
+        return nome;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
 
 }

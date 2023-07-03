@@ -1,8 +1,4 @@
-/*
- * SeguroPJ.java
- * Ultima modificacao: 21/05/2023
- * Material usado na disciplina MC322
- */
+
 
 import java.time.LocalDate;
 
@@ -27,10 +23,7 @@ public class SeguroPJ extends Seguro{
         return dados;
     }
 
-    /**
-     * Calcula o valor do SeguroPJ, atualiza o atributo valorMensal e retorna o valor calculado
-     * @return valor mensal calculado
-     */
+    
     @Override
     public double calcularValor(){
         double valor = 0;
@@ -43,7 +36,7 @@ public class SeguroPJ extends Seguro{
         return valor;
     }
 
-    //getters e setters
+   
     public Frota getFrota() {
         return frota;
     }

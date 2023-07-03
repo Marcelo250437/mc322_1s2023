@@ -1,89 +1,69 @@
-import java.util.Random;
+
+
+import java.time.LocalDate;
 
 public class Sinistro {
-	private int id ;
-	private String data;
-	private String endereco;
-	private Seguradora seguradora;
-	private Veiculo veiculo;
-	private Cliente cliente;
-	private static int numSinistros = 0; // conta quantos objetos da classe Sinistro ja foram criados, e eh usada para atribuir os ids
+    private final int id;
+    private LocalDate data;
+    private String endereco;
+    private Seguro seguro;
+    private Condutor condutor;
+    private static int numSinistros = 0; 
 
-
-	
-	// Construtor
-	public Sinistro() {
+    public Sinistro(LocalDate data, String endereco, Seguro seguro, Condutor condutor) {
+        this.data = data;
+        this.endereco = endereco;
+        this.seguro = seguro;
+        this.condutor = condutor;
         this.id = numSinistros;
         numSinistros++;
     }
-	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
-		this.data = data;
-		this.endereco = endereco;
-		this.seguradora = seguradora;
-		this.veiculo = veiculo;
-		this.cliente = cliente;
-		this.setId();
-	}
-	
-	
-	// Getters e setters
-	public void setId() {
-		Random aleatorio = new Random();
-		int idn = aleatorio.nextInt((99999 - 10000) + 1) + 10000;
-		// System.out.println("Número gerado: " + id);
-		this.id = idn;
-	}
-	public int getId(){
-		return this.id;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public Seguradora getSeguradora() {
-        return seguradora;
+    
+    public String toString() {
+        String dados = "";
+        dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nID do Seguro: " + seguro.getId()
+                + "\nDados do Condutor do Sinistro:\n" + condutor;
+        return dados;
     }
 
-    public void setSeguradora(Seguradora seguradora) {
-        this.seguradora = seguradora;
+    public int getId() {
+        return id;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-	public Cliente getCliente() {
-        return cliente;
-    }
-	public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-	public static int getNumSinistros() {
-        return numSinistros;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public static void setNumSinistros(int numSinistros) {
-        Sinistro.numSinistros = numSinistros;
+    public String getEndereco() {
+        return endereco;
     }
-	@Override
-	public String toString() {
-		return String.format("o id do sinitro é %s, ocorreu no endereço %s, na data de %s", this.id, this.endereco, this.data );
-		
-	}
-	
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Seguro getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(Seguro seguro) {
+        this.seguro = seguro;
+    }
+
+    public Condutor getCondutor() {
+        return condutor;
+    }
+
+    public void setCondutor(Condutor condutor) {
+        this.condutor = condutor;
+    }
+
+    public ClientePF getCliente() {
+        return null;
+    }
+
 }
